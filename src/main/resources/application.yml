@@ -1,0 +1,9 @@
+# ====== 基础服务配置 ======
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+# ====== Spring核心配置 ======
+spring:
+  profiles:
+    active: dev
