@@ -17,6 +17,7 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")  // 对所有接口生效
                 .allowCredentials(true)  // 允许携带Cookie（需配合严格域名限制）
+
                 // 使用allowedOriginPatterns替代allowedOrigins，解决与allowCredentials的冲突问题
                 // 警告：生产环境应指定具体域名（如"https://yourdomain.com"），避免使用"*"
                 .allowedOriginPatterns("*")  // ③ 允许的源域名集合（关键安全配置）警告：生产环境应指定具体域名（如"https://yourdomain.com"），避免使用"*"

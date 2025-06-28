@@ -7,3 +7,52 @@ server:
 spring:
   profiles:
     active: dev
+logging:
+  level:
+    root: INFO  # 通用日志级别
+mybatis-plus:
+  configuration:
+    # 关闭数据库字段下划线自动转驼峰命名（默认true）
+    # 作用：当数据库字段为user_name时，不会自动映射到userName属性
+    # 注意：需在实体类中用@TableField("user_name")手动指定字段映射
+    map-underscore-to-camel-case: false
+
+    # MyBatis SQL日志输出实现（开发调试用）
+    # StdOutImpl：将SQL打印到控制台（生产环境必须关闭！）
+    # Slf4jImpl（输出到日志文件）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  global-config:
+    db-config:
+      # 逻辑删除字段名（对应数据库列名）
+      # 实体类中需定义该字段，示例：
+      # @TableField("is_delete")
+      # private Integer isDelete;
+      logic-delete-field: isDelete
+
+      # 逻辑删除标记值（1=已删除）
+      # 执行delete操作时，实际执行的是UPDATE SET is_delete=1
+      logic-delete-value: 1
+
+      # 逻辑未删除标记值（0=未删除）
+      # 查询时会自动附加 WHERE is_delete=0
+      logic-not-delete-value: 0
+knife4j:
+  enable: true  # 启用Knife4j文档功能（关闭时隐藏文档入口）
+  openapi:
+    title: 接口文档  # 文档主标题（浏览器标签页显示）
+    description: "**usercenterback** "
+      # 文档描述（支持Markdown语法）
+    # **加粗**文本
+    email: # 负责人邮箱（显示在文档页脚）
+    concat: GG桀桀桀             # 联系人昵称（文档页脚展示）
+    url: https://doc.xiaominfo.com/docs/quick-start  # 项目文档链接（点击标题跳转）
+    version: v4.0               # API版本号（如v1.0.0）
+    license: Apache 2.0         # 许可证类型（MIT/GPL等）
+    group:                      # API分组配置（按业务模块划分）
+      test1:                    # 分组唯一标识（自定义）
+        group-name: ggusercenterbackend  # 分组显示名称（页面左侧导航）
+        api-rule: package       # 接口分组规则（按包/路径/注解分组）
+        api-rule-resources:     # 匹配规则对应的资源
+          - com.gj.ggusercenterback.controller  # 扫描指定包下的Controller接口
+

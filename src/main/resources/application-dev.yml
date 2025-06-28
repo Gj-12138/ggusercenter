@@ -2,7 +2,7 @@
 # ===== Spring核心配置 ======
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL 8.0+必须使用cj驱动
     url: jdbc:mysql://localhost:3306/ggusercenter?serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: root
