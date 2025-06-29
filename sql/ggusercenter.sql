@@ -1,5 +1,5 @@
-create database if not exists gguserbackend;
-use gguserbackend;
+create database if not exists ggusercenter;
+use ggusercenter;
 -- 用户表
 create table if not exists users(
     id bigint auto_increment comment 'id' primary key ,
